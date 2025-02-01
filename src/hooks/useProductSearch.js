@@ -45,17 +45,19 @@ const useProductSearch = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // TODO: Exercice 4.2 - Ajouter l'état pour la pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const itemsPerPage = 10;
 
-  const reloadProducts = async () => {
+  const fetchProducts = async (page) => {
     setLoading(true);
     setError(null);
     try {
-      // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
-      const response = await fetch('https://api.daaif.net/products?delay=1000');
+      const response = await fetch(`https://api.daaif.net/products?page=${page}&limit=${itemsPerPage}`);
       if (!response.ok) throw new Error('Erreur réseau');
       const data = await response.json();
       setProducts(data.products);
+      setTotalPages(Math.ceil(data.total / itemsPerPage));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -64,17 +66,34 @@ const useProductSearch = () => {
   };
 
   useEffect(() => {
-    reloadProducts();
-  }, []); // TODO: Exercice 4.2 - Ajouter les dépendances pour la pagination
+    fetchProducts(currentPage);
+  }, [currentPage]);
 
-  // TODO: Exercice 4.2 - Ajouter les fonctions pour la pagination
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const reloadProducts = () => {
+    fetchProducts(currentPage);
+  };
 
   return {
     products,
     loading,
     error,
-    reloadProducts // TODO: Exercice 4.1 - Retourner la fonction de rechargement
-    // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
+    reloadProducts,
+    currentPage,
+    totalPages,
+    nextPage,
+    previousPage
   };
 };
 

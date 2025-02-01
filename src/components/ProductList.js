@@ -11,8 +11,11 @@ const ProductList = () => {
         products,
         loading,
         error,
-        reloadProducts // TODO: Exercice 4.1 - Récupérer la fonction de rechargement
-        // TODO: Exercice 4.2 - Récupérer les fonctions et états de pagination
+        reloadProducts,
+        currentPage,
+        totalPages,
+        nextPage,
+        previousPage // TODO: Exercice 4.2 - Récupérer les fonctions et états de pagination
     } = useProductSearch();
 
     if (loading) return (
@@ -31,7 +34,6 @@ const ProductList = () => {
 
     return (
         <div>
-            {/* TODO: Exercice 4.1 - Ajouter le bouton de rechargement */}
             <button className="btn btn-primary mb-3" onClick={reloadProducts}>
                 Recharger les produits
             </button>
@@ -61,28 +63,25 @@ const ProductList = () => {
                 ))}
             </div>
 
-            {/* TODO: Exercice 4.2 - Ajouter les contrôles de pagination */}
-            {/* Exemple de structure pour la pagination :
-      <nav className="mt-4">
-        <ul className="pagination justify-content-center">
-          <li className="page-item">
-            <button className="page-link" onClick={previousPage}>
-              Précédent
-            </button>
-          </li>
-          <li className="page-item">
-            <span className="page-link">
-              Page {currentPage} sur {totalPages}
-            </span>
-          </li>
-          <li className="page-item">
-            <button className="page-link" onClick={nextPage}>
-              Suivant
-            </button>
-          </li>
-        </ul>
-      </nav>
-      */}
+            <nav className="mt-4">
+                <ul className="pagination justify-content-center">
+                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={previousPage} disabled={currentPage === 1}>
+                            Précédent
+                        </button>
+                    </li>
+                    <li className="page-item">
+                        <span className="page-link">
+                            Page {currentPage} sur {totalPages}
+                        </span>
+                    </li>
+                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={nextPage} disabled={currentPage === totalPages}>
+                            Suivant
+                        </button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     );
 };
