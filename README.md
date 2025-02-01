@@ -53,8 +53,13 @@ Pour chaque exercice :
 
 _Votre réponse pour l'exercice 1 :_
 ```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
+![Utilisation du hook debounce](img_1.png)
+
+Dans cet exercice, nous avons implémenté un hook debounce pour retarder l'exécution de la fonction de recherche jusqu'à ce que l'utilisateur ait cessé de taper pendant 500ms. Cela permet de réduire le nombre de requêtes de recherche et d'améliorer les performances.
+
+![Utilisation de la recherche](img_2.png)
+
+Nous avons utilisé la recherche en temps réel pour filtrer les produits en fonction du terme de recherche saisi par l'utilisateur. Le composant `ProductSearch` met à jour l'état `searchTerm` et utilise le hook `useEffect` pour déclencher la recherche lorsque le terme de recherche est mis à jour.
 ```
 
 ### Exercice 2 : Context et Internationalisation
