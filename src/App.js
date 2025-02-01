@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { useState, useContext, useEffect, createContext } from 'react';
 import ProductList from './components/ProductList';
 import ProductSearch from './components/ProductSearch';
 import ThemeToggle from './components/ThemeToggle';
@@ -11,8 +11,7 @@ const App = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   // TODO: Exercice 2.2 - Ajouter l'état pour la langue
 
-  const [language, setLanguage] = useState('fr'); // Exercice 2.1 - Ajouter l'état pour la langue
-
+  const [language, setLanguage] = useState('fr');
   return (
       <ThemeContext.Provider value={{ isDarkTheme, setIsDarkTheme }}>
         {/* TODO: Exercice 2.1 - Wrapper avec LanguageContext.Provider */}
@@ -23,7 +22,14 @@ const App = () => {
               <h1 className="text-center">Catalogue de Produits</h1>
               <div className="d-flex justify-content-end gap-2">
                 <ThemeToggle />
-                {/* Exercice 2.2 - Ajouter le sélecteur de langue */}
+                <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    className="form-select"
+                >
+                  <option value="fr">Français</option>
+                  <option value="en">English</option>
+                </select>
               </div>
             </header>
             <main>
@@ -36,4 +42,4 @@ const App = () => {
   );
 };
 
-export default App
+export default App;
