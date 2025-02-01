@@ -1,15 +1,32 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from '../App';
+
+const useDebounce = (value, delay) => {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedValue(value);
+        }, delay);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [value, delay]);
+
+    return debouncedValue;
+};
 
 const ProductSearch = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const { isDarkTheme } = useContext(ThemeContext);
+    const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-    const handleSearch = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-        onSearch(value);
-    };
+    useEffect(() => {
+        if (debouncedSearchTerm) {
+            onSearch(debouncedSearchTerm);
+        }
+    }, [debouncedSearchTerm, onSearch]);
 
     // TODO: Exercice 2.1 - Utiliser le LanguageContext
 
@@ -19,7 +36,7 @@ const ProductSearch = ({ onSearch }) => {
             <input
                 type="text"
                 value={searchTerm}
-                onChange={handleSearch}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Rechercher un produit..."
                 className={`form-control ${isDarkTheme ? 'bg-dark text-light' : ''}`}
             />
