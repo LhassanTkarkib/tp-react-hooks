@@ -11,7 +11,7 @@ const ProductList = () => {
         products,
         loading,
         error,
-        // TODO: Exercice 4.1 - Récupérer la fonction de rechargement
+        reloadProducts // TODO: Exercice 4.1 - Récupérer la fonction de rechargement
         // TODO: Exercice 4.2 - Récupérer les fonctions et états de pagination
     } = useProductSearch();
 
@@ -32,6 +32,10 @@ const ProductList = () => {
     return (
         <div>
             {/* TODO: Exercice 4.1 - Ajouter le bouton de rechargement */}
+            <button className="btn btn-primary mb-3" onClick={reloadProducts}>
+                Recharger les produits
+            </button>
+
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 {products.map(product => (
                     <div key={product.id} className="col">
