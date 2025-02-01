@@ -1,6 +1,22 @@
 import { useState, useEffect } from 'react';
 
 // TODO: Exercice 3.1 - Créer le hook useDebounce
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
+
 // TODO: Exercice 3.2 - Créer le hook useLocalStorage
 
 const useProductSearch = () => {
@@ -30,9 +46,9 @@ const useProductSearch = () => {
   // TODO: Exercice 4.1 - Ajouter la fonction de rechargement
   // TODO: Exercice 4.2 - Ajouter les fonctions pour la pagination
 
-  return { 
-    products, 
-    loading, 
+  return {
+    products,
+    loading,
     error,
     // TODO: Exercice 4.1 - Retourner la fonction de rechargement
     // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
