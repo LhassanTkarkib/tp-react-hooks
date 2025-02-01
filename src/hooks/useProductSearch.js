@@ -47,32 +47,33 @@ const useProductSearch = () => {
   const [error, setError] = useState(null);
   // TODO: Exercice 4.2 - Ajouter l'état pour la pagination
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
-        const response = await fetch('https://api.daaif.net/products?delay=1000');
-        if (!response.ok) throw new Error('Erreur réseau');
-        const data = await response.json();
-        setProducts(data.products);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
+  const reloadProducts = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
+      const response = await fetch('https://api.daaif.net/products?delay=1000');
+      if (!response.ok) throw new Error('Erreur réseau');
+      const data = await response.json();
+      setProducts(data.products);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchProducts();
+  useEffect(() => {
+    reloadProducts();
   }, []); // TODO: Exercice 4.2 - Ajouter les dépendances pour la pagination
 
-  // TODO: Exercice 4.1 - Ajouter la fonction de rechargement
   // TODO: Exercice 4.2 - Ajouter les fonctions pour la pagination
 
   return {
     products,
     loading,
     error,
-    // TODO: Exercice 4.1 - Retourner la fonction de rechargement
+    reloadProducts // TODO: Exercice 4.1 - Retourner la fonction de rechargement
     // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
   };
 };
