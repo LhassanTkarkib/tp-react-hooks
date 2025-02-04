@@ -52,15 +52,7 @@ Pour chaque exercice :
 - [ ] 1.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 1 :_
-```
-![Utilisation du hook debounce](img_1.png)
-
-Dans cet exercice, nous avons implémenté un hook debounce pour retarder l'exécution de la fonction de recherche jusqu'à ce que l'utilisateur ait cessé de taper pendant 500ms. Cela permet de réduire le nombre de requêtes de recherche et d'améliorer les performances.
-
-![Utilisation de la recherche](img_2.png)
-
-Nous avons utilisé la recherche en temps réel pour filtrer les produits en fonction du terme de recherche saisi par l'utilisateur. Le composant `ProductSearch` met à jour l'état `searchTerm` et utilise le hook `useEffect` pour déclencher la recherche lorsque le terme de recherche est mis à jour.
-```
+![Exercice 1](src/assets/exercice_1.png)
 
 ### Exercice 2 : Context et Internationalisation
 #### Objectif : Gérer les préférences de langue
@@ -70,10 +62,8 @@ Nous avons utilisé la recherche en temps réel pour filtrer les produits en fon
 - [ ] 2.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 2 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+![Exercice 2.1](src/assets/exercice_2.1.png)
+![Exercice 2.2](src/assets/exercice_2.2.png)
 
 ### Exercice 3 : Hooks Personnalisés
 #### Objectif : Créer des hooks réutilisables
@@ -83,10 +73,8 @@ Expliquez votre solution ici
 - [ ] 3.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 3 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+![Exercice 3.1](src/assets/exercice_3.1.png)
+![Exercice 3.2](src/assets/exercice_3.2.png)
 
 ### Exercice 4 : Gestion Asynchrone et Pagination
 #### Objectif : Gérer le chargement et la pagination
@@ -96,10 +84,8 @@ Expliquez votre solution ici
 - [ ] 4.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 4 :_
-```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+![Exercice 4.1](src/assets/exercice_4.1.png)
+![Exercice 4.2](src/assets/exercice_4.2.png)
 
 ## Rendu
 
